@@ -8,3 +8,18 @@ before_install:
 
 script:
     - docker run rasgdev/docker-react npm run test -- --coverage
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: " docker_react"
+    env: "DockerReact-env"
+    bucket_name: "elasticbeanstalk-us-east-2-202892644509"
+    bucket_path: "docker_react"
+    on:
+        branch: master
+        access_key_id: $AWS_ACCESS_KEY
+        secret_access_key:
+            secure: $AWS_SECRET_KEY
+
